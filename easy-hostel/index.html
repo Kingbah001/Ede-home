@@ -1,0 +1,3438 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Easy Hostel – Find Verified Hostels Near You</title>
+    <link rel="stylesheet" href="./style.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="toast-wrap" id="toastWrap"></div>
+
+    <!-- ═══════════════════════════════════════════════════ NAV -->
+    <nav id="mainNav">
+      <div class="nav-inner">
+        <div
+          class="logo"
+          id="mainLogo"
+          onclick="showPage('home')"
+          ondblclick="logoDoubleClick(event)"
+          title="Easy Hostel"
+        >
+          <div class="logo-icon" id="logoIcon">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" />
+              <path d="M9 21V12h6v9" />
+            </svg>
+          </div>
+          Easy Hostel
+        </div>
+        <ul class="nav-links" id="navLinks">
+          <li>
+            <a id="nl-home" class="active" onclick="showPage('home')">Home</a>
+          </li>
+          <li>
+            <a id="nl-listings" onclick="showPage('listings')"
+              >Browse Hostels</a
+            >
+          </li>
+          <li><a id="nl-about" onclick="showPage('about')">About</a></li>
+          <li><a id="nl-contact" onclick="showPage('contact')">Contact</a></li>
+          <li>
+            <div class="fav-nav-wrap">
+              <a
+                id="nl-favourites"
+                onclick="showPage('favourites')"
+                style="display: flex; align-items: center; gap: 5px"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
+                Saved
+              </a>
+              <span class="fav-badge" id="navFavBadge">0</span>
+            </div>
+          </li>
+        </ul>
+        <div class="nav-location">
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          Ede, Osun State
+        </div>
+        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a
+        id="ml-home"
+        class="active"
+        onclick="
+          showPage('home');
+          closeMobileMenu();
+        "
+        >Home</a
+      >
+      <a
+        id="ml-listings"
+        onclick="
+          showPage('listings');
+          closeMobileMenu();
+        "
+        >Browse Hostels</a
+      >
+      <a
+        id="ml-about"
+        onclick="
+          showPage('about');
+          closeMobileMenu();
+        "
+        >About</a
+      >
+      <a
+        id="ml-contact"
+        onclick="
+          showPage('contact');
+          closeMobileMenu();
+        "
+        >Contact</a
+      >
+      <a
+        id="ml-favourites"
+        onclick="
+          showPage('favourites');
+          closeMobileMenu();
+        "
+        style="display: flex; align-items: center; gap: 8px"
+      >
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+          />
+        </svg>
+        Saved Hostels
+        <span
+          id="mobileNavFavBadge"
+          style="
+            background: var(--red);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 1px 7px;
+            border-radius: 20px;
+            display: none;
+          "
+          >0</span
+        >
+      </a>
+      <div class="mobile-divider"></div>
+      <div class="mobile-location">
+        <svg
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        Ede, Osun State
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ LOGIN PAGE -->
+    <div class="page" id="page-login">
+      <div class="login-page">
+        <div class="login-left">
+          <div class="login-brand">
+            <div class="logo-icon">
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path
+                  d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
+                />
+                <path d="M9 21V12h6v9" />
+              </svg>
+            </div>
+            <h2>Easy Hostel Admin</h2>
+            <p>Manage hostel listings, users and settings from one place.</p>
+          </div>
+          <div class="login-features">
+            <div class="login-feature">
+              <div class="login-feature-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
+                  />
+                </svg>
+              </div>
+              <div class="login-feature-text">
+                <h4>Manage Listings</h4>
+                <p>Add, verify and remove hostel listings</p>
+              </div>
+            </div>
+            <div class="login-feature">
+              <div class="login-feature-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                </svg>
+              </div>
+              <div class="login-feature-text">
+                <h4>User Management</h4>
+                <p>Control admin accounts and permissions</p>
+              </div>
+            </div>
+            <div class="login-feature">
+              <div class="login-feature-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="18" y1="20" x2="18" y2="10" />
+                  <line x1="12" y1="20" x2="12" y2="4" />
+                  <line x1="6" y1="20" x2="6" y2="14" />
+                </svg>
+              </div>
+              <div class="login-feature-text">
+                <h4>Reports & Analytics</h4>
+                <p>View site performance and listing stats</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="login-right">
+          <div class="login-form-wrap">
+            <div class="login-header">
+              <h1>Welcome back</h1>
+              <p>Sign in to access the admin dashboard.</p>
+            </div>
+            <div class="login-form-group">
+              <label>Email address</label>
+              <div class="login-input-wrap">
+                <span class="login-input-icon"
+                  ><svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" /></svg
+                ></span>
+                <input
+                  class="login-input"
+                  id="loginEmail"
+                  type="email"
+                  placeholder="admin@easyhostel.com"
+                  value="admin@easyhostel.com"
+                />
+              </div>
+              <p class="login-hint error-msg" id="emailErr">
+                Please enter a valid email address
+              </p>
+            </div>
+            <div class="login-form-group">
+              <label>Password</label>
+              <div class="login-input-wrap">
+                <span class="login-input-icon"
+                  ><svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0110 0v4" /></svg
+                ></span>
+                <input
+                  class="login-input"
+                  id="loginPassword"
+                  type="password"
+                  placeholder="Enter your password"
+                  value="admin123"
+                />
+                <button
+                  class="login-eye"
+                  onclick="togglePasswordView()"
+                  id="eyeBtn"
+                  title="Show/hide password"
+                >
+                  <svg
+                    id="eyeIcon"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
+              <p class="login-hint error-msg" id="passErr">
+                Incorrect password. Try: admin123
+              </p>
+            </div>
+            <div class="login-options">
+              <label class="remember-me"
+                ><input type="checkbox" checked /> Remember me</label
+              >
+              <span
+                class="forgot-link"
+                onclick="showToast('Password reset email sent!', 'success')"
+                >Forgot password?</span
+              >
+            </div>
+            <button
+              class="btn btn-primary btn-full btn-lg"
+              onclick="submitLogin()"
+              id="loginBtn"
+            >
+              Sign In
+            </button>
+            <div class="login-divider">Demo credentials</div>
+            <div class="login-creds">
+              <strong>Email:</strong> admin@easyhostel.com &nbsp;|&nbsp;
+              <strong>Password:</strong> admin123
+            </div>
+            <div class="login-back" onclick="showPage('home')">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+              Back to website
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ HOME PAGE -->
+    <div class="page active" id="page-home">
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="hero-tag">
+            <span></span> 12 verified hostels available now
+          </div>
+          <h1>
+            Find <span class="highlight">Verified</span> Hostels<br />Near You
+          </h1>
+          <p>
+            Discover comfortable and affordable hostels near Federal Polytechnic
+            Ede. All listings confirmed by our team.
+          </p>
+          <div class="search-wrap">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.35-4.35" />
+            </svg>
+            <input
+              type="text"
+              id="heroSearch"
+              placeholder="Search hostels near campus…"
+              onkeydown="
+                if (event.key === 'Enter') {
+                  heroGoSearch();
+                }
+              "
+            />
+            <button class="btn btn-primary" onclick="heroGoSearch()">
+              Search
+            </button>
+          </div>
+          <div class="filter-chips">
+            <div class="chip" id="chip-budget" onclick="toggleChip('budget')">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" /></svg
+              >Budget
+            </div>
+            <div class="chip" id="chip-near" onclick="toggleChip('near')">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /></svg
+              >Near Campus
+            </div>
+            <div
+              class="chip"
+              id="chip-verified"
+              onclick="toggleChip('verified')"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="20 6 9 17 4 12" /></svg
+              >Verified Only
+            </div>
+            <div class="chip" id="chip-new" onclick="toggleChip('new')">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                /></svg
+              >New Listings
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="stats-strip">
+        <div class="stat-item">
+          <div class="stat-num">12+</div>
+          <div class="stat-desc">Verified Hostels</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-desc">Students Housed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-desc">Listings Reviewed</div>
+        </div>
+      </div>
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Top Verified Hostels</h2>
+          <a class="view-all" onclick="showPage('listings')">View all →</a>
+        </div>
+        <div class="cards-grid" id="homeCards"></div>
+      </section>
+      <div class="how-strip">
+        <h2 class="how-title">How Easy Hostel Works</h2>
+        <div class="how-steps">
+          <div class="how-step">
+            <div class="how-step-num">1</div>
+            <h4>Search</h4>
+            <p>Find hostels near campus using our smart filters.</p>
+          </div>
+          <div class="how-step">
+            <div class="how-step-num">2</div>
+            <h4>Verify</h4>
+            <p>Every listing is checked and confirmed by our team.</p>
+          </div>
+          <div class="how-step">
+            <div class="how-step-num">3</div>
+            <h4>Contact</h4>
+            <p>Reach landlords directly via WhatsApp or phone.</p>
+          </div>
+        </div>
+      </div>
+      <div class="cta-banner">
+        <h2>Ready to find your perfect hostel?</h2>
+        <p>Browse all verified listings near Federal Polytechnic Ede today.</p>
+        <button
+          class="btn btn-lg"
+          style="background: #fff; color: var(--blue)"
+          onclick="showPage('listings')"
+        >
+          Browse Hostels →
+        </button>
+      </div>
+      <footer>
+        <div class="footer-grid">
+          <div style="max-width: 260px">
+            <div class="logo" style="color: #fff; margin-bottom: 10px">
+              <div
+                class="logo-icon"
+                style="background: rgba(255, 255, 255, 0.12)"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2.5"
+                >
+                  <path
+                    d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
+                  />
+                </svg>
+              </div>
+              Easy Hostel
+            </div>
+            <p style="font-size: 0.82rem; line-height: 1.65; color: #94a3b8">
+              Verified. Reliable. Student-friendly.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h5>Quick Links</h5>
+            <ul>
+              <li><a onclick="showPage('home')">Home</a></li>
+              <li><a onclick="showPage('listings')">Browse Hostels</a></li>
+              <li><a onclick="showPage('about')">About</a></li>
+              <li><a onclick="showPage('contact')">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Follow Us</h5>
+            <div class="social-icons">
+              <div class="social-btn">
+                <svg
+                  width="15"
+                  height="15"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                  />
+                </svg>
+              </div>
+              <div class="social-btn">
+                <svg
+                  width="15"
+                  height="15"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                  />
+                </svg>
+              </div>
+              <div class="social-btn">
+                <svg
+                  width="15"
+                  height="15"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          © 2025 Easy Hostel. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ LISTINGS PAGE -->
+    <div class="page" id="page-listings">
+      <div
+        style="
+          padding: 20px 5% 0;
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          flex-wrap: wrap;
+          max-width: 1200px;
+          margin: 0 auto;
+        "
+      >
+        <div
+          class="search-wrap"
+          style="flex: 1; min-width: 220px; margin-bottom: 0"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" /></svg
+          ><input
+            type="text"
+            id="listSearch"
+            placeholder="Search hostels…"
+            oninput="applyFilters()"
+          />
+        </div>
+        <button class="filter-toggle-btn" onclick="toggleMobileFilters()">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="8" y1="12" x2="16" y2="12" />
+            <line x1="11" y1="18" x2="13" y2="18" /></svg
+          >Filters
+        </button>
+      </div>
+      <div class="listings-layout">
+        <aside class="filters-panel" id="filtersPanel">
+          <div class="filters-header">
+            <h3 class="filters-title">Filters</h3>
+            <span class="clear-all" onclick="clearFilters()">Clear all</span>
+          </div>
+          <div class="filter-group">
+            <div class="filter-group-title">Price Range (per year)</div>
+            <div class="price-labels">
+              <span>₦50,000</span
+              ><span class="price-val" id="priceVal">₦500,000+</span>
+            </div>
+            <input
+              type="range"
+              min="50000"
+              max="500000"
+              value="500000"
+              id="priceRange"
+              oninput="
+                updatePriceLabel(this.value);
+                applyFilters();
+              "
+            />
+          </div>
+          <div class="filter-group">
+            <div class="filter-group-title">Verification</div>
+            <div class="checkbox-group">
+              <label class="checkbox-item"
+                ><input
+                  type="checkbox"
+                  id="fVerified"
+                  onchange="applyFilters()"
+                />
+                Verified Only</label
+              >
+            </div>
+          </div>
+          <div class="filter-group">
+            <div class="filter-group-title">Room Type</div>
+            <div class="checkbox-group">
+              <label class="checkbox-item"
+                ><input
+                  type="checkbox"
+                  data-room="Self Contain"
+                  onchange="applyFilters()"
+                />
+                Self Contain</label
+              ><label class="checkbox-item"
+                ><input
+                  type="checkbox"
+                  data-room="Shared Apartment"
+                  onchange="applyFilters()"
+                />
+                Shared Apartment</label
+              ><label class="checkbox-item"
+                ><input
+                  type="checkbox"
+                  data-room="Single Room"
+                  onchange="applyFilters()"
+                />
+                Single Room</label
+              ><label class="checkbox-item"
+                ><input
+                  type="checkbox"
+                  data-room="Two in a Room"
+                  onchange="applyFilters()"
+                />
+                Two in a Room</label
+              >
+            </div>
+          </div>
+          <div class="filter-group">
+            <div class="filter-group-title">Amenities</div>
+            <div class="checkbox-group">
+              <label class="checkbox-item"
+                ><input
+                  type="checkbox"
+                  data-amenity="Wi-Fi"
+                  onchange="applyFilters()"
+                />
+                Wi-Fi</label
+              ><label class="checkbox-item"
+                ><input
+                  type="checkbox"
+                  data-amenity="Water Supply"
+                  onchange="applyFilters()"
+                />
+                Water Supply</label
+              ><label class="checkbox-item"
+                ><input
+                  type="checkbox"
+                  data-amenity="Security"
+                  onchange="applyFilters()"
+                />
+                Security</label
+              ><label class="checkbox-item"
+                ><input
+                  type="checkbox"
+                  data-amenity="Parking"
+                  onchange="applyFilters()"
+                />
+                Parking Space</label
+              ><label class="checkbox-item"
+                ><input
+                  type="checkbox"
+                  data-amenity="Electricity"
+                  onchange="applyFilters()"
+                />
+                Electricity (24/7)</label
+              >
+            </div>
+          </div>
+          <button
+            class="btn btn-primary btn-full"
+            style="margin-top: 10px"
+            onclick="closeMobileFilters()"
+          >
+            Apply Filters
+          </button>
+        </aside>
+        <main>
+          <div
+            id="activeFiltersWrap"
+            class="active-filters"
+            style="display: none"
+          ></div>
+          <div class="listings-header">
+            <h2 class="listings-count">
+              <span id="listNum">12</span> hostels found
+            </h2>
+            <div class="sort-select">
+              Sort by<select id="sortSelect" onchange="applyFilters()">
+                <option value="recommended">Recommended</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="nearest">Nearest First</option>
+                <option value="verified">Verified First</option>
+              </select>
+            </div>
+          </div>
+          <div class="listings-grid" id="listingsGrid"></div>
+          <div class="list-pagination" id="listPagination"></div>
+        </main>
+      </div>
+      <footer>
+        <div class="footer-grid">
+          <div>
+            <div class="logo" style="color: #fff; margin-bottom: 10px">
+              <div
+                class="logo-icon"
+                style="background: rgba(255, 255, 255, 0.12)"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2.5"
+                >
+                  <path
+                    d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
+                  />
+                </svg>
+              </div>
+              Easy Hostel
+            </div>
+            <p style="font-size: 0.82rem; color: #94a3b8">
+              Verified. Reliable. Student-friendly.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h5>Quick Links</h5>
+            <ul>
+              <li><a onclick="showPage('home')">Home</a></li>
+              <li><a onclick="showPage('listings')">Browse Hostels</a></li>
+              <li><a onclick="showPage('about')">About</a></li>
+              <li><a onclick="showPage('contact')">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col"><h5>Follow Us</h5></div>
+        </div>
+        <div class="footer-bottom">
+          © 2025 Easy Hostel. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ DETAIL PAGE -->
+    <div class="page" id="page-detail">
+      <div class="detail-layout">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 26px;
+            flex-wrap: wrap;
+            gap: 10px;
+          "
+        >
+          <button class="back-link" onclick="showPage('listings')">
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path d="M19 12H5M12 19l-7-7 7-7" /></svg
+            >Back to listings
+          </button>
+          <div style="display: flex; gap: 8px">
+            <button
+              class="btn btn-ghost btn-sm"
+              id="favBtn"
+              onclick="toggleFavourite()"
+              title="Save to favourites"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                id="favIcon"
+              >
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                />
+              </svg>
+              <span id="favBtnText">Save</span>
+            </button>
+            <button
+              class="btn btn-ghost btn-sm"
+              onclick="shareDetail()"
+              title="Copy link"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="18" cy="5" r="3" />
+                <circle cx="6" cy="12" r="3" />
+                <circle cx="18" cy="19" r="3" />
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+              </svg>
+              Share
+            </button>
+          </div>
+        </div>
+        <div class="detail-grid">
+          <div>
+            <div class="gallery-main" id="galleryMain">
+              <div
+                id="galleryMainImg"
+                style="height: 100%; border-radius: var(--radius)"
+              ></div>
+              <div class="gallery-label">
+                <span class="badge badge-verified" id="detailBadge"
+                  >✓ Verified</span
+                >
+              </div>
+            </div>
+            <div class="thumbs" id="galleryThumbs"></div>
+            <div class="detail-info">
+              <h1 class="detail-name" id="detailName">GreenView Hostel</h1>
+              <p
+                style="
+                  font-size: 0.78rem;
+                  color: var(--light);
+                  margin-bottom: 10px;
+                "
+                id="detailVerifiedLbl"
+              >
+                Last verified: 3 days ago
+              </p>
+              <div class="detail-meta">
+                <span
+                  ><svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                    <circle cx="12" cy="10" r="3" /></svg
+                  ><span id="detailDist">0.4 km</span></span
+                ><span
+                  ><svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  </svg>
+                  Ede, Osun State</span
+                >
+              </div>
+              <p class="detail-desc" id="detailDesc"></p>
+              <div class="amenities-section">
+                <h3>Amenities</h3>
+                <div class="amenities-grid" id="detailAmenities"></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="booking-card">
+              <div class="booking-price" id="detailPrice">
+                ₦250,000 <span>/ year</span>
+              </div>
+              <div class="booking-avail">
+                <span class="badge badge-available">Available</span>
+              </div>
+              <table class="detail-table" id="detailTable"></table>
+              <div class="contact-btns">
+                <button
+                  class="btn btn-green btn-full btn-lg"
+                  onclick="showToast('Opening WhatsApp…', 'success')"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"
+                    />
+                    <path
+                      d="M11.5 2C6.253 2 2 6.253 2 11.5c0 1.882.538 3.638 1.466 5.126L2 22l5.545-1.453A9.454 9.454 0 0011.5 21C16.747 21 21 16.747 21 11.5S16.747 2 11.5 2z"
+                    /></svg
+                  >Chat on WhatsApp
+                </button>
+                <button
+                  class="btn btn-secondary btn-full btn-lg"
+                  onclick="showToast('Calling landlord…')"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"
+                    /></svg
+                  >Call Landlord
+                </button>
+              </div>
+              <div
+                class="report-link"
+                onclick="showToast('Report submitted. Thank you.', 'success')"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                >Report incorrect listing
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div class="footer-grid">
+          <div>
+            <div class="logo" style="color: #fff; margin-bottom: 10px">
+              <div
+                class="logo-icon"
+                style="background: rgba(255, 255, 255, 0.12)"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2.5"
+                >
+                  <path
+                    d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
+                  />
+                </svg>
+              </div>
+              Easy Hostel
+            </div>
+            <p style="font-size: 0.82rem; color: #94a3b8">
+              Verified. Reliable. Student-friendly.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h5>Quick Links</h5>
+            <ul>
+              <li><a onclick="showPage('home')">Home</a></li>
+              <li><a onclick="showPage('listings')">Browse Hostels</a></li>
+              <li><a onclick="showPage('about')">About</a></li>
+              <li><a onclick="showPage('contact')">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col"></div>
+        </div>
+        <div class="footer-bottom">
+          © 2025 Easy Hostel. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ ADMIN PAGE -->
+    <div class="page" id="page-admin">
+      <!-- SIDEBAR (desktop) -->
+      <div class="admin-layout">
+        <aside class="admin-sidebar">
+          <div class="admin-sidebar-logo">
+            <div class="logo-icon">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                stroke-width="2.5"
+              >
+                <path
+                  d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
+                />
+              </svg>
+            </div>
+            Easy Hostel
+          </div>
+          <div class="admin-sidebar-user">
+            <div class="admin-avatar">AD</div>
+            <div>
+              <div class="admin-avatar-name">Admin User</div>
+              <div class="admin-avatar-role">Super Admin</div>
+            </div>
+          </div>
+          <nav class="admin-sidebar-nav">
+            <a
+              class="asn-item active"
+              id="stab-dashboard"
+              onclick="switchAdminTab('dashboard')"
+            >
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" /></svg
+              >Dashboard
+            </a>
+            <a
+              class="asn-item"
+              id="stab-listings"
+              onclick="switchAdminTab('listings')"
+            >
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
+                /></svg
+              >Listings
+            </a>
+            <a
+              class="asn-item"
+              id="stab-addlisting"
+              onclick="switchAdminTab('addlisting')"
+            >
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="16" />
+                <line x1="8" y1="12" x2="16" y2="12" /></svg
+              >Add Listing
+            </a>
+            <a
+              class="asn-item"
+              id="stab-reports"
+              onclick="switchAdminTab('reports')"
+            >
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="18" y1="20" x2="18" y2="10" />
+                <line x1="12" y1="20" x2="12" y2="4" />
+                <line x1="6" y1="20" x2="6" y2="14" /></svg
+              >Reports
+            </a>
+            <a
+              class="asn-item"
+              id="stab-users"
+              onclick="switchAdminTab('users')"
+            >
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                <circle cx="9" cy="7" r="4" /></svg
+              >Users
+            </a>
+            <a
+              class="asn-item"
+              id="stab-settings"
+              onclick="switchAdminTab('settings')"
+            >
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"
+                /></svg
+              >Settings
+            </a>
+            <a class="asn-item asn-logout" onclick="adminLogout()">
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" /></svg
+              >Logout
+            </a>
+          </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="admin-content">
+          <!-- Mobile top bar -->
+          <div class="admin-mob-header">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <div
+                class="logo-icon"
+                style="
+                  width: 28px;
+                  height: 28px;
+                  background: var(--blue);
+                  border-radius: 6px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2.5"
+                >
+                  <path
+                    d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
+                  />
+                </svg>
+              </div>
+              <b style="font-family: Sora, sans-serif; font-size: 0.95rem"
+                >Easy Hostel Admin</b
+              >
+            </div>
+            <button class="btn btn-ghost btn-sm" onclick="adminLogout()">
+              Logout
+            </button>
+          </div>
+
+          <!-- ── DASHBOARD ── -->
+          <div class="asec active" id="asec-dashboard">
+            <div class="admin-topbar">
+              <div>
+                <h1 class="admin-title">Dashboard</h1>
+                <p class="admin-sub">Welcome back, Admin.</p>
+              </div>
+              <span
+                id="adminDateTime"
+                style="font-size: 0.82rem; color: var(--mid)"
+              ></span>
+            </div>
+            <div class="stat-cards">
+              <div class="stat-card">
+                <div class="stat-val" id="dash-total">9</div>
+                <div class="stat-lbl">Total Listings</div>
+                <div class="stat-change up">↑ 2 this month</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val" id="dash-verified">7</div>
+                <div class="stat-lbl">Verified</div>
+                <div class="stat-change up">↑ 1 this week</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val" id="dash-unverified">2</div>
+                <div class="stat-lbl">Unverified</div>
+                <div class="stat-change down">Need review</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val">247</div>
+                <div class="stat-lbl">Total Views</div>
+                <div class="stat-change up">↑ 18% this week</div>
+              </div>
+            </div>
+            <div class="dash-charts">
+              <div class="table-card">
+                <div class="table-card-header">
+                  <span class="table-card-title">Views This Week</span>
+                </div>
+                <div style="padding: 16px 20px">
+                  <div class="chart-placeholder" id="dashChart"></div>
+                </div>
+              </div>
+              <div class="table-card">
+                <div class="table-card-header">
+                  <span class="table-card-title">Listing Status</span>
+                </div>
+                <div style="padding: 20px" id="dashStatusChart"></div>
+              </div>
+            </div>
+            <div class="table-card">
+              <div class="table-card-header">
+                <span class="table-card-title">Recent Listings</span
+                ><button
+                  class="btn btn-sm btn-primary"
+                  onclick="switchAdminTab('listings')"
+                >
+                  View All
+                </button>
+              </div>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Hostel Name</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Last Verified</th>
+                  </tr>
+                </thead>
+                <tbody id="dashTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ── LISTINGS ── -->
+          <div class="asec" id="asec-listings">
+            <div class="admin-topbar">
+              <div>
+                <h1 class="admin-title">Listings</h1>
+                <p class="admin-sub">Manage all hostel listings</p>
+              </div>
+              <button
+                class="btn btn-primary"
+                onclick="switchAdminTab('addlisting')"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" /></svg
+                >Add Listing
+              </button>
+            </div>
+            <div class="stat-cards">
+              <div class="stat-card">
+                <div class="stat-val" id="lc-total">9</div>
+                <div class="stat-lbl">Total</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val" id="lc-verified">7</div>
+                <div class="stat-lbl">Verified</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val" id="lc-unverified">2</div>
+                <div class="stat-lbl">Unverified</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val" id="lc-avg">₦206k</div>
+                <div class="stat-lbl">Avg. Price</div>
+              </div>
+            </div>
+            <div class="table-card">
+              <div class="table-card-header">
+                <span class="table-card-title">All Listings</span>
+                <div class="table-search">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="M21 21l-4.35-4.35" /></svg
+                  ><input
+                    type="text"
+                    placeholder="Search…"
+                    id="adminSearch"
+                    oninput="renderAdminListings()"
+                  />
+                </div>
+              </div>
+              <div style="overflow-x: auto">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Location</th>
+                      <th>Price/yr</th>
+                      <th>Status</th>
+                      <th>Verified</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminTableBody"></tbody>
+                </table>
+              </div>
+              <div class="pagination" id="adminPagination"></div>
+            </div>
+          </div>
+
+          <!-- ── ADD LISTING ── -->
+          <div class="asec" id="asec-addlisting">
+            <div class="admin-topbar">
+              <div>
+                <h1 class="admin-title">Add New Listing</h1>
+                <p class="admin-sub">Fill in the hostel details below</p>
+              </div>
+            </div>
+            <div class="table-card" style="padding: 28px; max-width: 680px">
+              <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px"
+              >
+                <div class="form-group">
+                  <label class="form-label">Hostel Name *</label
+                  ><input
+                    class="form-input"
+                    id="addName"
+                    placeholder="e.g. GreenView Hostel"
+                  />
+                  <p class="field-error" id="err-addName">Required</p>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Location *</label
+                  ><input
+                    class="form-input"
+                    id="addLocation"
+                    value="Ede, Osun State"
+                  />
+                  <p class="field-error" id="err-addLocation">Required</p>
+                </div>
+              </div>
+              <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px"
+              >
+                <div class="form-group">
+                  <label class="form-label">Price per Year (₦) *</label
+                  ><input
+                    class="form-input"
+                    type="number"
+                    id="addPrice"
+                    placeholder="250000"
+                  />
+                  <p class="field-error" id="err-addPrice">Required</p>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Distance from Campus (km)</label
+                  ><input
+                    class="form-input"
+                    type="number"
+                    step="0.1"
+                    id="addDist"
+                    placeholder="0.5"
+                  />
+                </div>
+              </div>
+              <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px"
+              >
+                <div class="form-group">
+                  <label class="form-label">Room Type</label
+                  ><select class="form-input" id="addRoom">
+                    <option>Self Contain</option>
+                    <option>Shared Apartment</option>
+                    <option>Single Room</option>
+                    <option>Two in a Room</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Occupancy</label
+                  ><input
+                    class="form-input"
+                    id="addOccupancy"
+                    placeholder="e.g. 2 in a room"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Description</label
+                ><textarea
+                  class="form-textarea"
+                  id="addDesc"
+                  placeholder="Describe the hostel…"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="margin-bottom: 10px"
+                  >Amenities</label
+                >
+                <div
+                  style="display: flex; flex-wrap: wrap; gap: 8px"
+                  id="amenityCheckboxes"
+                ></div>
+              </div>
+              <!-- Photo Upload -->
+              <div class="form-group">
+                <label class="form-label"
+                  >Photos
+                  <span
+                    style="
+                      font-size: 0.75rem;
+                      color: var(--light);
+                      font-weight: 400;
+                    "
+                    >(up to 8, JPG/PNG/WEBP, max 5MB each)</span
+                  ></label
+                >
+                <div
+                  class="photo-dropzone"
+                  id="photoDropzone"
+                  onclick="document.getElementById('photoFileInput').click()"
+                  ondragover="photoDragOver(event, 'add')"
+                  ondragleave="photoDragLeave(event, 'add')"
+                  ondrop="photoDrop(event, 'add')"
+                >
+                  <input
+                    type="file"
+                    id="photoFileInput"
+                    accept="image/jpeg,image/png,image/webp"
+                    multiple
+                    style="display: none"
+                    onchange="handlePhotoFiles(this.files)"
+                  />
+                  <div class="dropzone-icon">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    >
+                      <rect x="3" y="3" width="18" height="18" rx="3" />
+                      <circle cx="8.5" cy="8.5" r="1.5" />
+                      <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                  </div>
+                  <p class="dropzone-title">Drag & drop photos here</p>
+                  <p class="dropzone-sub">
+                    or <span class="dropzone-link">click to browse</span>
+                  </p>
+                </div>
+                <div
+                  class="photo-preview-grid"
+                  id="photoPreviewGrid"
+                  style="display: none"
+                ></div>
+                <div id="photoStatus" style="display: none; margin-top: 10px">
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      margin-bottom: 6px;
+                    "
+                  >
+                    <span
+                      id="photoStatusText"
+                      style="font-size: 0.8rem; font-weight: 600"
+                    ></span
+                    ><button
+                      class="btn btn-ghost btn-sm"
+                      onclick="clearAllPhotos()"
+                      style="font-size: 0.72rem; padding: 3px 8px"
+                    >
+                      Clear All
+                    </button>
+                  </div>
+                  <div
+                    style="
+                      background: var(--bg);
+                      border-radius: 20px;
+                      height: 6px;
+                    "
+                  >
+                    <div
+                      id="photoCountBar"
+                      style="
+                        height: 100%;
+                        background: var(--blue);
+                        border-radius: 20px;
+                        transition: width 0.3s;
+                      "
+                    ></div>
+                  </div>
+                  <p
+                    style="
+                      font-size: 0.72rem;
+                      color: var(--light);
+                      margin-top: 4px;
+                    "
+                    id="photoCountSub"
+                  ></p>
+                </div>
+                <div class="photo-error" id="photoError"></div>
+              </div>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap">
+                <button
+                  class="btn btn-primary btn-lg"
+                  onclick="submitNewListing()"
+                >
+                  Publish Listing
+                </button>
+                <button class="btn btn-ghost btn-lg" onclick="resetAddForm()">
+                  Reset
+                </button>
+                <button
+                  class="btn btn-ghost btn-lg"
+                  onclick="switchAdminTab('listings')"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── REPORTS ── -->
+          <div class="asec" id="asec-reports">
+            <div class="admin-topbar">
+              <div>
+                <h1 class="admin-title">Reports</h1>
+                <p class="admin-sub">Analytics and performance overview</p>
+              </div>
+              <button
+                class="btn btn-primary btn-sm"
+                onclick="showToast('Report exported as CSV!', 'success')"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" /></svg
+                >Export CSV
+              </button>
+            </div>
+            <div class="stat-cards">
+              <div class="stat-card">
+                <div class="stat-val" id="rpt-listed">0</div>
+                <div class="stat-lbl">Verified Listings</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val">247</div>
+                <div class="stat-lbl">Total Views</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val">52</div>
+                <div class="stat-lbl">Inquiries</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val">38</div>
+                <div class="stat-lbl">WhatsApp Contacts</div>
+              </div>
+            </div>
+            <div class="dash-charts">
+              <div class="table-card">
+                <div class="table-card-header">
+                  <span class="table-card-title">Daily Views (This Week)</span>
+                </div>
+                <div style="padding: 16px 20px">
+                  <div class="chart-placeholder" id="rptWeekChart"></div>
+                </div>
+              </div>
+              <div class="table-card">
+                <div class="table-card-header">
+                  <span class="table-card-title">Top Listings by Views</span>
+                </div>
+                <div style="padding: 16px 20px" id="rptTopListings"></div>
+              </div>
+            </div>
+            <div class="dash-charts">
+              <div class="table-card">
+                <div class="table-card-header">
+                  <span class="table-card-title">Price Distribution</span>
+                </div>
+                <div style="padding: 16px 20px" id="rptPriceDist"></div>
+              </div>
+              <div class="table-card">
+                <div class="table-card-header">
+                  <span class="table-card-title">Traffic Sources</span>
+                </div>
+                <div style="padding: 16px 20px" id="rptTraffic"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── USERS ── -->
+          <div class="asec" id="asec-users">
+            <div class="admin-topbar">
+              <div>
+                <h1 class="admin-title">Users</h1>
+                <p class="admin-sub">Manage admin and staff accounts</p>
+              </div>
+              <button class="btn btn-primary" onclick="openUserModal()">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" /></svg
+                >Add User
+              </button>
+            </div>
+            <div
+              class="stat-cards"
+              style="grid-template-columns: repeat(3, 1fr)"
+            >
+              <div class="stat-card">
+                <div class="stat-val" id="uc-total">3</div>
+                <div class="stat-lbl">Total Users</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val" id="uc-active">2</div>
+                <div class="stat-lbl">Active</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val" id="uc-admins">1</div>
+                <div class="stat-lbl">Admins</div>
+              </div>
+            </div>
+            <div class="table-card">
+              <div class="table-card-header">
+                <span class="table-card-title">All Users</span>
+                <div class="table-search">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="M21 21l-4.35-4.35" /></svg
+                  ><input
+                    type="text"
+                    placeholder="Search users…"
+                    id="userSearch"
+                    oninput="renderUsersTable()"
+                  />
+                </div>
+              </div>
+              <div style="overflow-x: auto">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>User</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                      <th>Status</th>
+                      <th>Last Login</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="usersTableBody"></tbody>
+                </table>
+              </div>
+              <div class="pagination" id="usersPagination"></div>
+            </div>
+          </div>
+
+          <!-- ── SETTINGS ── -->
+          <div class="asec" id="asec-settings">
+            <div class="admin-topbar">
+              <div>
+                <h1 class="admin-title">Settings</h1>
+                <p class="admin-sub">Configure your platform</p>
+              </div>
+            </div>
+            <div class="settings-layout">
+              <div class="settings-nav-list">
+                <div
+                  class="snav active"
+                  id="snav-general"
+                  onclick="switchSettingsTab('general')"
+                >
+                  General
+                </div>
+                <div
+                  class="snav"
+                  id="snav-notifications"
+                  onclick="switchSettingsTab('notifications')"
+                >
+                  Notifications
+                </div>
+                <div
+                  class="snav"
+                  id="snav-security"
+                  onclick="switchSettingsTab('security')"
+                >
+                  Security
+                </div>
+                <div
+                  class="snav"
+                  id="snav-appearance"
+                  onclick="switchSettingsTab('appearance')"
+                >
+                  Appearance
+                </div>
+                <div
+                  class="snav"
+                  id="snav-danger"
+                  onclick="switchSettingsTab('danger')"
+                  style="color: var(--red)"
+                >
+                  Danger Zone
+                </div>
+              </div>
+              <div class="settings-panel-body">
+                <div class="ssec active" id="ssec-general">
+                  <h3 style="font-weight: 700; margin-bottom: 4px">
+                    General Settings
+                  </h3>
+                  <p class="admin-sub" style="margin-bottom: 20px">
+                    Basic platform configuration.
+                  </p>
+                  <div class="form-group">
+                    <label class="form-label">Site Name</label
+                    ><input class="form-input" value="Easy Hostel" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Contact Email</label
+                    ><input
+                      class="form-input"
+                      type="email"
+                      value="support@easyhostel.com"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Contact Phone</label
+                    ><input class="form-input" value="+234 810 123 4567" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Location</label
+                    ><input class="form-input" value="Ede, Osun State" />
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                      padding: 12px 0;
+                      border-top: 1px solid var(--border);
+                    "
+                  >
+                    <div>
+                      <b style="font-size: 0.9rem">Maintenance Mode</b>
+                      <p style="font-size: 0.78rem; color: var(--mid)">
+                        Temporarily disable the public site
+                      </p>
+                    </div>
+                    <label class="toggle"
+                      ><input type="checkbox" /><span
+                        class="toggle-slider"
+                      ></span
+                    ></label>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                      padding: 12px 0;
+                      border-top: 1px solid var(--border);
+                    "
+                  >
+                    <div>
+                      <b style="font-size: 0.9rem">Allow New Listings</b>
+                      <p style="font-size: 0.78rem; color: var(--mid)">
+                        Let users submit hostel listings
+                      </p>
+                    </div>
+                    <label class="toggle"
+                      ><input type="checkbox" checked /><span
+                        class="toggle-slider"
+                      ></span
+                    ></label>
+                  </div>
+                  <button
+                    class="btn btn-primary"
+                    style="margin-top: 16px"
+                    onclick="showToast('Settings saved!', 'success')"
+                  >
+                    Save Changes
+                  </button>
+                </div>
+                <div class="ssec" id="ssec-notifications">
+                  <h3 style="font-weight: 700; margin-bottom: 4px">
+                    Notifications
+                  </h3>
+                  <p class="admin-sub" style="margin-bottom: 20px">
+                    Control when you receive alerts.
+                  </p>
+                  <div style="display: flex; flex-direction: column; gap: 0">
+                    <div
+                      style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 12px 0;
+                        border-bottom: 1px solid var(--border);
+                      "
+                    >
+                      <div>
+                        <b style="font-size: 0.875rem">New Listing Submitted</b>
+                        <p style="font-size: 0.78rem; color: var(--mid)">
+                          Get notified when a new hostel is submitted
+                        </p>
+                      </div>
+                      <label class="toggle"
+                        ><input type="checkbox" checked /><span
+                          class="toggle-slider"
+                        ></span
+                      ></label>
+                    </div>
+                    <div
+                      style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 12px 0;
+                        border-bottom: 1px solid var(--border);
+                      "
+                    >
+                      <div>
+                        <b style="font-size: 0.875rem">Listing Reported</b>
+                        <p style="font-size: 0.78rem; color: var(--mid)">
+                          Alert when a listing is flagged as incorrect
+                        </p>
+                      </div>
+                      <label class="toggle"
+                        ><input type="checkbox" checked /><span
+                          class="toggle-slider"
+                        ></span
+                      ></label>
+                    </div>
+                    <div
+                      style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 12px 0;
+                        border-bottom: 1px solid var(--border);
+                      "
+                    >
+                      <div>
+                        <b style="font-size: 0.875rem">New Contact Message</b>
+                        <p style="font-size: 0.78rem; color: var(--mid)">
+                          Email when someone sends a contact form message
+                        </p>
+                      </div>
+                      <label class="toggle"
+                        ><input type="checkbox" checked /><span
+                          class="toggle-slider"
+                        ></span
+                      ></label>
+                    </div>
+                    <div
+                      style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 12px 0;
+                      "
+                    >
+                      <div>
+                        <b style="font-size: 0.875rem">Weekly Summary</b>
+                        <p style="font-size: 0.78rem; color: var(--mid)">
+                          Receive weekly stats every Monday
+                        </p>
+                      </div>
+                      <label class="toggle"
+                        ><input type="checkbox" /><span
+                          class="toggle-slider"
+                        ></span
+                      ></label>
+                    </div>
+                  </div>
+                  <div class="form-group" style="margin-top: 16px">
+                    <label class="form-label">Notification Email</label
+                    ><input
+                      class="form-input"
+                      type="email"
+                      value="admin@easyhostel.com"
+                    />
+                  </div>
+                  <button
+                    class="btn btn-primary"
+                    onclick="
+                      showToast('Notification settings saved!', 'success')
+                    "
+                  >
+                    Save Changes
+                  </button>
+                </div>
+                <div class="ssec" id="ssec-security">
+                  <h3 style="font-weight: 700; margin-bottom: 4px">Security</h3>
+                  <p class="admin-sub" style="margin-bottom: 20px">
+                    Manage account security and access.
+                  </p>
+                  <div class="form-group">
+                    <label class="form-label">Current Password</label
+                    ><input
+                      class="form-input"
+                      type="password"
+                      placeholder="Enter current password"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">New Password</label
+                    ><input
+                      class="form-input"
+                      type="password"
+                      placeholder="Min. 8 characters"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Confirm New Password</label
+                    ><input
+                      class="form-input"
+                      type="password"
+                      placeholder="Repeat new password"
+                    />
+                  </div>
+                  <button
+                    class="btn btn-primary"
+                    onclick="showToast('Password updated!', 'success')"
+                    style="margin-bottom: 24px"
+                  >
+                    Update Password
+                  </button>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                      padding: 12px 0;
+                      border-top: 1px solid var(--border);
+                    "
+                  >
+                    <div>
+                      <b style="font-size: 0.875rem"
+                        >Two-Factor Authentication</b
+                      >
+                      <p style="font-size: 0.78rem; color: var(--mid)">
+                        Require a code at login
+                      </p>
+                    </div>
+                    <label class="toggle"
+                      ><input type="checkbox" /><span
+                        class="toggle-slider"
+                      ></span
+                    ></label>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                      padding: 12px 0;
+                      border-top: 1px solid var(--border);
+                    "
+                  >
+                    <div>
+                      <b style="font-size: 0.875rem">Session Timeout</b>
+                      <p style="font-size: 0.78rem; color: var(--mid)">
+                        Auto-logout after 30 minutes
+                      </p>
+                    </div>
+                    <label class="toggle"
+                      ><input type="checkbox" checked /><span
+                        class="toggle-slider"
+                      ></span
+                    ></label>
+                  </div>
+                </div>
+                <div class="ssec" id="ssec-appearance">
+                  <h3 style="font-weight: 700; margin-bottom: 4px">
+                    Appearance
+                  </h3>
+                  <p class="admin-sub" style="margin-bottom: 20px">
+                    Customise how the platform looks.
+                  </p>
+                  <div class="form-group">
+                    <label class="form-label" style="margin-bottom: 10px"
+                      >Primary Colour</label
+                    >
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap">
+                      <div
+                        style="
+                          width: 34px;
+                          height: 34px;
+                          border-radius: 8px;
+                          background: #1e3aba;
+                          cursor: pointer;
+                          border: 3px solid #0f172a;
+                        "
+                        onclick="setAccentColor('#1E3ABA', this)"
+                      ></div>
+                      <div
+                        style="
+                          width: 34px;
+                          height: 34px;
+                          border-radius: 8px;
+                          background: #16a34a;
+                          cursor: pointer;
+                          border: 2px solid transparent;
+                        "
+                        onclick="setAccentColor('#16A34A', this)"
+                      ></div>
+                      <div
+                        style="
+                          width: 34px;
+                          height: 34px;
+                          border-radius: 8px;
+                          background: #d97706;
+                          cursor: pointer;
+                          border: 2px solid transparent;
+                        "
+                        onclick="setAccentColor('#D97706', this)"
+                      ></div>
+                      <div
+                        style="
+                          width: 34px;
+                          height: 34px;
+                          border-radius: 8px;
+                          background: #7c3aed;
+                          cursor: pointer;
+                          border: 2px solid transparent;
+                        "
+                        onclick="setAccentColor('#7C3AED', this)"
+                      ></div>
+                      <div
+                        style="
+                          width: 34px;
+                          height: 34px;
+                          border-radius: 8px;
+                          background: #dc2626;
+                          cursor: pointer;
+                          border: 2px solid transparent;
+                        "
+                        onclick="setAccentColor('#DC2626', this)"
+                      ></div>
+                      <div
+                        style="
+                          width: 34px;
+                          height: 34px;
+                          border-radius: 8px;
+                          background: #0d9488;
+                          cursor: pointer;
+                          border: 2px solid transparent;
+                        "
+                        onclick="setAccentColor('#0D9488', this)"
+                      ></div>
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                      padding: 12px 0;
+                      border-top: 1px solid var(--border);
+                    "
+                  >
+                    <div>
+                      <b style="font-size: 0.875rem">Compact Tables</b>
+                      <p style="font-size: 0.78rem; color: var(--mid)">
+                        Reduce row height in data tables
+                      </p>
+                    </div>
+                    <label class="toggle"
+                      ><input type="checkbox" /><span
+                        class="toggle-slider"
+                      ></span
+                    ></label>
+                  </div>
+                  <button
+                    class="btn btn-primary"
+                    style="margin-top: 16px"
+                    onclick="showToast('Appearance saved!', 'success')"
+                  >
+                    Save Changes
+                  </button>
+                </div>
+                <div class="ssec" id="ssec-danger">
+                  <h3
+                    style="
+                      font-weight: 700;
+                      color: var(--red);
+                      margin-bottom: 4px;
+                    "
+                  >
+                    Danger Zone
+                  </h3>
+                  <p class="admin-sub" style="margin-bottom: 20px">
+                    Irreversible actions — proceed with caution.
+                  </p>
+                  <div
+                    style="
+                      border: 1.5px solid var(--red-pale);
+                      border-radius: 10px;
+                      padding: 18px;
+                      margin-bottom: 14px;
+                    "
+                  >
+                    <h4
+                      style="
+                        font-weight: 700;
+                        font-size: 0.9rem;
+                        margin-bottom: 4px;
+                      "
+                    >
+                      Clear All Listings
+                    </h4>
+                    <p
+                      style="
+                        font-size: 0.82rem;
+                        color: var(--mid);
+                        margin-bottom: 12px;
+                      "
+                    >
+                      Permanently remove all hostel listings. Cannot be undone.
+                    </p>
+                    <button
+                      class="btn btn-danger btn-sm"
+                      onclick="
+                        if (confirm('Sure? This cannot be undone.'))
+                          showToast('All listings cleared', 'error');
+                      "
+                    >
+                      Clear Listings
+                    </button>
+                  </div>
+                  <div
+                    style="
+                      border: 1.5px solid var(--red-pale);
+                      border-radius: 10px;
+                      padding: 18px;
+                    "
+                  >
+                    <h4
+                      style="
+                        font-weight: 700;
+                        font-size: 0.9rem;
+                        margin-bottom: 4px;
+                      "
+                    >
+                      Delete Admin Account
+                    </h4>
+                    <p
+                      style="
+                        font-size: 0.82rem;
+                        color: var(--mid);
+                        margin-bottom: 12px;
+                      "
+                    >
+                      Permanently delete this account. You will be logged out.
+                    </p>
+                    <button
+                      class="btn btn-danger btn-sm"
+                      onclick="
+                        adminLogout();
+                        showToast('Account deleted', 'error');
+                      "
+                    >
+                      Delete Account
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <!-- end admin-layout -->
+
+      <!-- MOBILE BOTTOM NAV -->
+      <nav class="admin-bottom-nav">
+        <button
+          class="abn-btn active"
+          id="amn-dashboard"
+          onclick="switchAdminTab('dashboard')"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
+          <span>Home</span>
+        </button>
+        <button
+          class="abn-btn"
+          id="amn-listings"
+          onclick="switchAdminTab('listings')"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" />
+          </svg>
+          <span>Listings</span>
+        </button>
+        <button
+          class="abn-btn"
+          id="amn-addlisting"
+          onclick="switchAdminTab('addlisting')"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="16" />
+            <line x1="8" y1="12" x2="16" y2="12" />
+          </svg>
+          <span>Add</span>
+        </button>
+        <button
+          class="abn-btn"
+          id="amn-reports"
+          onclick="switchAdminTab('reports')"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="18" y1="20" x2="18" y2="10" />
+            <line x1="12" y1="20" x2="12" y2="4" />
+            <line x1="6" y1="20" x2="6" y2="14" />
+          </svg>
+          <span>Reports</span>
+        </button>
+        <button
+          class="abn-btn"
+          id="amn-users"
+          onclick="switchAdminTab('users')"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+          </svg>
+          <span>Users</span>
+        </button>
+        <button
+          class="abn-btn"
+          id="amn-settings"
+          onclick="switchAdminTab('settings')"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"
+            />
+          </svg>
+          <span>Settings</span>
+        </button>
+      </nav>
+    </div>
+    <!-- end page-admin -->
+
+    <!-- ═══════════════════════════════════════════════════ FAVOURITES PAGE -->
+    <div class="page" id="page-favourites">
+      <section
+        style="
+          padding: 40px 5% 24px;
+          background: linear-gradient(150deg, #eff6ff 0%, #f0fdf4 100%);
+        "
+      >
+        <div
+          style="
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+          "
+        >
+          <div>
+            <h1 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 4px">
+              Saved Hostels
+            </h1>
+            <p style="color: var(--mid); font-size: 0.9rem">
+              Your favourited listings — <span id="favCount">0</span> saved
+            </p>
+          </div>
+          <div style="display: flex; gap: 10px">
+            <button class="btn btn-ghost btn-sm" onclick="clearAllFavourites()">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="3 6 5 6 21 6" />
+                <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6" />
+              </svg>
+              Clear All
+            </button>
+            <button
+              class="btn btn-primary btn-sm"
+              onclick="showPage('listings')"
+            >
+              Browse More
+            </button>
+          </div>
+        </div>
+      </section>
+      <div style="padding: 32px 5%; max-width: 1100px; margin: 0 auto">
+        <div class="cards-grid" id="favGrid"></div>
+      </div>
+      <footer>
+        <div class="footer-grid">
+          <div style="max-width: 260px">
+            <div class="logo" style="color: #fff; margin-bottom: 10px">
+              <div
+                class="logo-icon"
+                style="background: rgba(255, 255, 255, 0.12)"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2.5"
+                >
+                  <path
+                    d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
+                  />
+                </svg>
+              </div>
+              Easy Hostel
+            </div>
+            <p style="font-size: 0.82rem; line-height: 1.65; color: #94a3b8">
+              Verified. Reliable. Student-friendly.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h5>Quick Links</h5>
+            <ul>
+              <li><a onclick="showPage('home')">Home</a></li>
+              <li><a onclick="showPage('listings')">Browse Hostels</a></li>
+              <li><a onclick="showPage('about')">About</a></li>
+              <li><a onclick="showPage('contact')">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col"><h5>Follow Us</h5></div>
+        </div>
+        <div class="footer-bottom">
+          © 2025 Easy Hostel. All rights reserved.
+        </div>
+      </footer>
+    </div>
+    <div class="page" id="page-about">
+      <section class="about-hero">
+        <h1>About Easy Hostel</h1>
+        <p>
+          Helping students find verified and reliable hostels in Ede without
+          stress.
+        </p>
+      </section>
+      <div class="about-content">
+        <p class="section-label">The Problem</p>
+        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 20px">
+          Students struggle with:
+        </h2>
+        <div class="problem-cards">
+          <div class="problem-card">
+            <div class="prob-icon red">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#DC2626"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="15" y1="9" x2="9" y2="15" />
+                <line x1="9" y1="9" x2="15" y2="15" />
+              </svg>
+            </div>
+            <div>
+              <h4>Fake or outdated listings</h4>
+              <p>
+                Many listings are fake or no longer available when students
+                arrive.
+              </p>
+            </div>
+          </div>
+          <div class="problem-card">
+            <div class="prob-icon amber">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#D97706"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+            </div>
+            <div>
+              <h4>Prices that change after contact</h4>
+              <p>
+                You see one price online, but it's different when you arrive in
+                person.
+              </p>
+            </div>
+          </div>
+          <div class="problem-card">
+            <div class="prob-icon blue">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1D4ED8"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h4>Landlords that don't respond</h4>
+              <p>Messages go unanswered or replies take too long to arrive.</p>
+            </div>
+          </div>
+        </div>
+        <p class="section-label">The Solution</p>
+        <p class="solution-text">
+          Easy Hostel is built to solve this by focusing on verified listings,
+          clear information, and direct landlord contact.
+        </p>
+        <div class="solution-grid">
+          <div class="sol-card">
+            <div class="sol-icon" style="background: #dbeafe">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1D4ED8"
+                stroke-width="2"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h4>Verified Listings</h4>
+            <p>We check and confirm every listing before it goes live.</p>
+          </div>
+          <div class="sol-card">
+            <div class="sol-icon" style="background: var(--green-pale)">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#16A34A"
+                stroke-width="2"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <h4>Clear Information</h4>
+            <p>Accurate photos, real prices and complete hostel details.</p>
+          </div>
+          <div class="sol-card">
+            <div class="sol-icon" style="background: #f3e8ff">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#9333EA"
+                stroke-width="2"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81"
+                />
+              </svg>
+            </div>
+            <h4>Direct Contact</h4>
+            <p>Message or call landlords directly — no middlemen.</p>
+          </div>
+        </div>
+        <p class="section-label">How It Works</p>
+        <div class="how-works-grid">
+          <div class="hw-step">
+            <div class="hw-icon" style="background: #eff6ff">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1E3ABA"
+                stroke-width="2"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
+              </svg>
+            </div>
+            <h4>Search</h4>
+            <p>Find hostels near campus and filter by your needs.</p>
+          </div>
+          <div class="hw-arrow">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </div>
+          <div class="hw-step">
+            <div class="hw-icon" style="background: var(--green-pale)">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#16A34A"
+                stroke-width="2"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h4>Verify</h4>
+            <p>View trusted, verified listings reviewed for accuracy.</p>
+          </div>
+          <div class="hw-arrow">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </div>
+          <div class="hw-step">
+            <div class="hw-icon" style="background: #f3e8ff">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#9333EA"
+                stroke-width="2"
+              >
+                <path d="M22 16.92v3a2 2 0 01-2.18 2" />
+              </svg>
+            </div>
+            <h4>Contact</h4>
+            <p>Chat or call landlords directly with confidence.</p>
+          </div>
+        </div>
+        <div class="trust-box">
+          <div class="trust-icon">
+            <svg
+              width="26"
+              height="26"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div>
+            <h3>We prioritize accuracy over quantity.</h3>
+            <p>
+              Every listing is reviewed to reduce misinformation and outdated
+              data.
+            </p>
+          </div>
+        </div>
+        <div class="cta-card">
+          <div>
+            <h3>Ready to find your perfect hostel?</h3>
+            <p>Browse verified and reliable hostels in Ede with ease.</p>
+          </div>
+          <button
+            class="btn btn-lg"
+            style="background: #fff; color: var(--blue); white-space: nowrap"
+            onclick="showPage('listings')"
+          >
+            Browse Hostels →
+          </button>
+        </div>
+      </div>
+      <footer>
+        <div class="footer-grid">
+          <div>
+            <div class="logo" style="color: #fff; margin-bottom: 10px">
+              <div
+                class="logo-icon"
+                style="background: rgba(255, 255, 255, 0.12)"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2.5"
+                >
+                  <path
+                    d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
+                  />
+                </svg>
+              </div>
+              Easy Hostel
+            </div>
+            <p style="font-size: 0.82rem; color: #94a3b8">
+              Verified. Reliable. Student-friendly.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h5>Quick Links</h5>
+            <ul>
+              <li><a onclick="showPage('home')">Home</a></li>
+              <li><a onclick="showPage('listings')">Browse Hostels</a></li>
+              <li><a onclick="showPage('about')">About</a></li>
+              <li><a onclick="showPage('contact')">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col"><h5>Follow Us</h5></div>
+        </div>
+        <div class="footer-bottom">
+          © 2025 Easy Hostel. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ CONTACT PAGE -->
+    <div class="page" id="page-contact">
+      <section class="contact-hero">
+        <div class="contact-hero-grid">
+          <div>
+            <h1>Contact Us</h1>
+            <p>
+              Have questions or want to list your hostel? Reach out — we respond
+              within 1–3 hours.
+            </p>
+          </div>
+          <div class="contact-hero-illo">
+            <svg width="160" height="120" viewBox="0 0 160 120" fill="none">
+              <circle cx="110" cy="40" r="26" fill="#BFDBFE" />
+              <ellipse cx="110" cy="40" rx="15" ry="18" fill="#1E3ABA" />
+              <circle cx="110" cy="28" r="9" fill="#FCD34D" />
+              <rect
+                x="100"
+                y="38"
+                width="20"
+                height="24"
+                rx="4"
+                fill="#1E3ABA"
+              />
+              <rect
+                x="20"
+                y="50"
+                width="80"
+                height="50"
+                rx="10"
+                fill="#fff"
+                stroke="#E2E8F0"
+                stroke-width="1.5"
+              />
+              <line
+                x1="32"
+                y1="66"
+                x2="88"
+                y2="66"
+                stroke="#BFDBFE"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+              <line
+                x1="32"
+                y1="76"
+                x2="76"
+                y2="76"
+                stroke="#BFDBFE"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+              <line
+                x1="32"
+                y1="86"
+                x2="60"
+                y2="86"
+                stroke="#BFDBFE"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+        </div>
+      </section>
+      <div class="contact-content">
+        <p class="section-label" style="margin-bottom: 14px">Contact Options</p>
+        <div class="contact-options">
+          <div class="contact-opt green">
+            <div class="opt-icon green">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"
+                />
+                <path
+                  d="M11.5 2C6.253 2 2 6.253 2 11.5c0 1.882.538 3.638 1.466 5.126L2 22l5.545-1.453A9.454 9.454 0 0011.5 21C16.747 21 21 16.747 21 11.5S16.747 2 11.5 2z"
+                />
+              </svg>
+            </div>
+            <div class="opt-body">
+              <h4>
+                Chat on WhatsApp
+                <span class="badge badge-recommended">RECOMMENDED</span>
+              </h4>
+              <p>Fastest way to reach us. Response time: 1–3 hours (9am–6pm)</p>
+            </div>
+            <button
+              class="btn btn-green btn-sm"
+              onclick="showToast('Opening WhatsApp…', 'success')"
+            >
+              Message Now
+            </button>
+          </div>
+          <div class="contact-opt blue">
+            <div class="opt-icon blue">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                stroke-width="2"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"
+                />
+              </svg>
+            </div>
+            <div class="opt-body">
+              <h4>Call Us</h4>
+              <p>
+                For urgent issues or direct support.
+                <strong>+234 810 123 4567</strong>
+              </p>
+            </div>
+            <button
+              class="btn btn-primary btn-sm"
+              onclick="showToast('Calling +234 810 123 4567…')"
+            >
+              Call Now
+            </button>
+          </div>
+          <div class="contact-opt amber">
+            <div class="opt-icon amber">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                stroke-width="2"
+              >
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <div class="opt-body">
+              <h4>Email Us</h4>
+              <p>
+                For formal requests. <strong>support@easyhostel.com</strong>
+              </p>
+            </div>
+            <button
+              class="btn btn-amber btn-sm"
+              onclick="showToast('Opening email client…')"
+            >
+              Send Email
+            </button>
+          </div>
+        </div>
+        <div class="info-tip">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--blue)"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <line x1="12" y1="8" x2="12.01" y2="8" /></svg
+          >Not sure which to use? WhatsApp is the fastest way to get a response.
+        </div>
+        <p class="section-label" style="margin-bottom: 18px">Send a Message</p>
+        <div class="form-group">
+          <label class="form-label">Name *</label
+          ><input class="form-input" id="cName" placeholder="Your full name" />
+          <p class="field-error" id="err-cName">Name is required</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email *</label
+          ><input
+            class="form-input"
+            type="email"
+            id="cEmail"
+            placeholder="Your email address"
+          />
+          <p class="field-error" id="err-cEmail">Valid email is required</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message *</label
+          ><textarea
+            class="form-textarea"
+            id="cMessage"
+            placeholder="How can we help you?"
+          ></textarea>
+          <p class="field-error" id="err-cMessage">Message is required</p>
+        </div>
+        <button
+          class="btn btn-primary btn-full btn-lg"
+          onclick="submitContact()"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="22" y1="2" x2="11" y2="13" />
+            <polygon points="22 2 15 22 11 13 2 9 22 2" /></svg
+          >Send Message
+        </button>
+        <p class="form-note">
+          We usually respond within 1–3 hours during working hours.
+        </p>
+        <div class="loc-card" style="margin-top: 40px">
+          <div class="loc-icon">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </div>
+          <div class="loc-body">
+            <h4>Based in Ede, Osun State</h4>
+            <p>
+              Operating in Ede, Osun State — focused on student housing near
+              campus areas.
+            </p>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div class="footer-grid">
+          <div>
+            <div class="logo" style="color: #fff; margin-bottom: 10px">
+              <div
+                class="logo-icon"
+                style="background: rgba(255, 255, 255, 0.12)"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2.5"
+                >
+                  <path
+                    d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
+                  />
+                </svg>
+              </div>
+              Easy Hostel
+            </div>
+            <p style="font-size: 0.82rem; color: #94a3b8">
+              Verified. Reliable. Student-friendly.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h5>Quick Links</h5>
+            <ul>
+              <li><a onclick="showPage('home')">Home</a></li>
+              <li><a onclick="showPage('listings')">Browse Hostels</a></li>
+              <li><a onclick="showPage('about')">About</a></li>
+              <li><a onclick="showPage('contact')">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Follow Us</h5>
+            <div class="social-icons">
+              <div class="social-btn">
+                <svg
+                  width="15"
+                  height="15"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          © 2025 Easy Hostel. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <!-- MODALS -->
+    <div class="overlay" id="editModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Edit Listing</h3>
+          <button class="modal-close" onclick="closeEditModal()">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <p>Update the details for this listing.</p>
+        <input type="hidden" id="editHostelId" />
+        <div class="form-group">
+          <label class="form-label">Hostel Name *</label
+          ><input class="form-input" id="editName" placeholder="Hostel name" />
+          <p class="field-error" id="err-editName">Name is required</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+          <div class="form-group">
+            <label class="form-label">Price per Year (₦) *</label
+            ><input
+              class="form-input"
+              type="number"
+              id="editPrice"
+              placeholder="250000"
+            />
+            <p class="field-error" id="err-editPrice">Price is required</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Room Type</label
+            ><select class="form-input" id="editRoom">
+              <option>Self Contain</option>
+              <option>Shared Apartment</option>
+              <option>Single Room</option>
+              <option>Two in a Room</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label
+          ><textarea
+            class="form-textarea"
+            style="height: 90px"
+            id="editDesc"
+            placeholder="Hostel description…"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" style="margin-bottom: 10px"
+            >Update Photos
+            <span
+              style="font-size: 0.75rem; color: var(--light); font-weight: 400"
+              >(optional — leave empty to keep existing)</span
+            ></label
+          >
+          <div
+            class="photo-dropzone"
+            id="editPhotoDropzone"
+            onclick="document.getElementById('editPhotoInput').click()"
+            ondragover="photoDragOver(event, 'edit')"
+            ondragleave="photoDragLeave(event, 'edit')"
+            ondrop="photoDrop(event, 'edit')"
+            style="padding: 20px"
+          >
+            <input
+              type="file"
+              id="editPhotoInput"
+              accept="image/jpeg,image/png,image/webp"
+              multiple
+              style="display: none"
+              onchange="handleEditPhotos(this.files)"
+            />
+            <div style="text-align: center">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--light)"
+                stroke-width="1.5"
+                style="margin-bottom: 6px"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="3" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" />
+              </svg>
+              <p style="font-size: 0.8rem; color: var(--mid)">
+                Drop new photos or
+                <span style="color: var(--blue); font-weight: 600"
+                  >click to browse</span
+                >
+              </p>
+            </div>
+          </div>
+          <div id="editPhotoPreview" style="display: none; margin-top: 10px">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+                font-size: 0.8rem;
+                color: var(--mid);
+              "
+            >
+              <span id="editPhotoCount">0 new photos selected</span>
+              <button
+                class="btn btn-ghost btn-sm"
+                style="font-size: 0.72rem; padding: 3px 8px"
+                onclick="clearEditPhotos()"
+              >
+                Clear
+              </button>
+            </div>
+            <div class="photo-preview-grid" id="editPhotoGrid"></div>
+          </div>
+        </div>
+        <div class="modal-btns">
+          <button class="btn btn-ghost" onclick="closeEditModal()">
+            Cancel
+          </button>
+          <button class="btn btn-primary" onclick="saveEditListing()">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="overlay" id="addModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Add New Listing</h3>
+          <button class="modal-close" onclick="closeAddModal()">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <p>Quickly add a hostel listing.</p>
+        <div class="form-group">
+          <label class="form-label">Hostel Name *</label
+          ><input
+            class="form-input"
+            id="mName"
+            placeholder="e.g. GreenView Hostel"
+          />
+          <p class="field-error" id="err-mName">Name is required</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Price per Year (₦) *</label
+          ><input
+            class="form-input"
+            type="number"
+            id="mPrice"
+            placeholder="250000"
+          />
+          <p class="field-error" id="err-mPrice">Price is required</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Room Type</label
+          ><select class="form-input" id="mRoom">
+            <option>Self Contain</option>
+            <option>Shared Apartment</option>
+            <option>Single Room</option>
+            <option>Two in a Room</option>
+          </select>
+        </div>
+        <div class="modal-btns">
+          <button class="btn btn-ghost" onclick="closeAddModal()">Cancel</button
+          ><button class="btn btn-primary" onclick="submitModalListing()">
+            Add Listing
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="overlay" id="deleteModal">
+      <div class="modal" style="max-width: 360px; text-align: center">
+        <div
+          style="
+            width: 52px;
+            height: 52px;
+            background: var(--red-pale);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+          "
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#DC2626"
+            stroke-width="2"
+          >
+            <polyline points="3 6 5 6 21 6" />
+            <path
+              d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"
+            />
+          </svg>
+        </div>
+        <h3 style="margin-bottom: 8px">Delete Listing?</h3>
+        <p style="margin-bottom: 0">
+          This action cannot be undone. The listing will be permanently removed.
+        </p>
+        <div
+          style="
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+          "
+        >
+          <button class="btn btn-ghost" onclick="closeDeleteModal()">
+            Cancel</button
+          ><button class="btn btn-red" onclick="confirmDelete()">Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="overlay" id="userModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Add New User</h3>
+          <button class="modal-close" onclick="closeUserModal()">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <p>Create a new admin or staff account.</p>
+        <div class="form-group">
+          <label class="form-label">Full Name *</label
+          ><input
+            class="form-input"
+            id="uName"
+            placeholder="e.g. John Adebayo"
+          />
+          <p class="field-error" id="err-uName">Name is required</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email *</label
+          ><input
+            class="form-input"
+            type="email"
+            id="uEmail"
+            placeholder="john@easyhostel.com"
+          />
+          <p class="field-error" id="err-uEmail">Valid email required</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Role</label
+          ><select class="form-input" id="uRole">
+            <option value="admin">Admin</option>
+            <option value="staff">Staff</option>
+          </select>
+        </div>
+        <div class="modal-btns">
+          <button class="btn btn-ghost" onclick="closeUserModal()">
+            Cancel</button
+          ><button class="btn btn-primary" onclick="submitUser()">
+            Create User
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
