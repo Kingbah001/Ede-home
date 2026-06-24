@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Easy Hostel – Sign In / Sign Up</title>
+    <link rel="stylesheet" href="./login.css">
+  </head>
+  <body>
+    <div class="auth-page">
+      <!-- ════════════ LEFT PANEL ════════════ -->
+      <div class="auth-left">
+        <div class="auth-orb auth-orb-1"></div>
+        <div class="auth-orb auth-orb-2"></div>
+
+        <div class="auth-brand">
+          <div class="auth-logo-icon">
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" />
+              <path d="M9 21V12h6v9" />
+            </svg>
+          </div>
+          <h2>Easy Hostel</h2>
+          <p>
+            Find verified, affordable student hostels near Federal Polytechnic
+            Ede.
+          </p>
+        </div>
+
+        <div class="auth-features">
+          <div class="auth-feature">
+            <div class="auth-feature-icon">
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <div class="auth-feature-text">
+              <h4>Verified Listings Only</h4>
+              <p>Every hostel is inspected before going live</p>
+            </div>
+          </div>
+          <div class="auth-feature">
+            <div class="auth-feature-icon">
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"
+                />
+              </svg>
+            </div>
+            <div class="auth-feature-text">
+              <h4>Direct WhatsApp Contact</h4>
+              <p>Chat landlords directly — no middlemen</p>
+            </div>
+          </div>
+          <div class="auth-feature">
+            <div class="auth-feature-icon">
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                />
+              </svg>
+            </div>
+            <div class="auth-feature-text">
+              <h4>Save Your Favourites</h4>
+              <p>Bookmark and compare hostels before deciding</p>
+            </div>
+          </div>
+          <div class="auth-feature">
+            <div class="auth-feature-icon">
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <div class="auth-feature-text">
+              <h4>Real-time Availability</h4>
+              <p>Live vacancy info so you never waste a trip</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-testimonial">
+          <p>
+            "Found my room in under 10 minutes. The landlord replied on WhatsApp
+            same day!"
+          </p>
+          <div class="auth-testimonial-author">
+            <div class="auth-testimonial-avatar">AT</div>
+            <div>
+              <div class="auth-testimonial-name">Amaka Tunde</div>
+              <div class="auth-testimonial-school">
+                ND2 Student, Fed Poly Ede
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════════ RIGHT PANEL ════════════ -->
+      <div class="auth-right">
+        <div class="auth-form-wrap">
+          <!-- Mobile brand -->
+          <div class="mobile-brand">
+            <div class="mobile-brand-icon">
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path
+                  d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
+                />
+                <path d="M9 21V12h6v9" />
+              </svg>
+            </div>
+            <span>Easy Hostel</span>
+          </div>
+
+          <!-- ── TAB SWITCHER ── -->
+          <div class="auth-tabs">
+            <button
+              class="auth-tab active"
+              id="tab-login"
+              onclick="switchTab('login')"
+            >
+              Sign In
+            </button>
+            <button
+              class="auth-tab"
+              id="tab-signup"
+              onclick="switchTab('signup')"
+            >
+              Create Account
+            </button>
+          </div>
+
+          <!-- ════════ LOGIN PANEL ════════ -->
+          <div class="auth-panel active" id="panel-login">
+            <div class="auth-panel-header">
+              <h1>Welcome back</h1>
+              <p>Sign in to browse verified hostels near your campus</p>
+            </div>
+
+            <div class="social-btns">
+              <button
+                class="social-btn"
+                onclick="showToast('Google sign-in coming soon', 'success')"
+              >
+                <svg width="17" height="17" viewBox="0 0 48 48">
+                  <path
+                    fill="#EA4335"
+                    d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
+                  />
+                  <path
+                    fill="#4285F4"
+                    d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.36-8.16 2.36-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
+                  />
+                </svg>
+                Google
+              </button>
+              <button
+                class="social-btn"
+                onclick="showToast('WhatsApp sign-in coming soon', 'success')"
+              >
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                    fill="#25D366"
+                  />
+                </svg>
+                WhatsApp
+              </button>
+            </div>
+
+            <div class="auth-divider">or continue with email</div>
+
+            <div class="form-group">
+              <label for="loginEmail">Email address</label>
+              <div class="input-wrap">
+                <svg
+                  class="input-icon"
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <input
+                  class="form-input"
+                  type="email"
+                  id="loginEmail"
+                  placeholder="student@example.com"
+                  autocomplete="email"
+                />
+              </div>
+              <p class="field-error" id="loginEmailErr">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                Please enter a valid email address
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label for="loginPassword">Password</label>
+              <div class="input-wrap">
+                <svg
+                  class="input-icon"
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0110 0v4" />
+                </svg>
+                <input
+                  class="form-input"
+                  type="password"
+                  id="loginPassword"
+                  placeholder="Enter your password"
+                  autocomplete="current-password"
+                />
+                <button
+                  class="input-eye"
+                  onclick="togglePw('loginPassword', this)"
+                  type="button"
+                  aria-label="Toggle password"
+                >
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
+              <p class="field-error" id="loginPassErr">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                Incorrect email or password
+              </p>
+            </div>
+
+            <div class="form-options">
+              <label class="remember-me"
+                ><input type="checkbox" checked /> Remember me</label
+              >
+              <span class="forgot-link" onclick="handleForgot()"
+                >Forgot password?</span
+              >
+            </div>
+
+            <button
+              class="btn btn-primary btn-full btn-lg"
+              onclick="doLogin()"
+              id="loginBtn"
+            >
+              <span class="btn-text"><a href="./index.html">Sign In</a></span>
+              <div class="btn-spinner"></div>
+            </button>
+          </div>
+
+          <!-- ════════ SIGNUP PANEL ════════ -->
+          <div class="auth-panel" id="panel-signup">
+            <div class="auth-panel-header">
+              <h1>Create account</h1>
+              <p>Join thousands of students finding hostels near campus</p>
+            </div>
+
+            <div class="social-btns">
+              <button
+                class="social-btn"
+                onclick="showToast('Google sign-up coming soon', 'success')"
+              >
+                <svg width="17" height="17" viewBox="0 0 48 48">
+                  <path
+                    fill="#EA4335"
+                    d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
+                  />
+                  <path
+                    fill="#4285F4"
+                    d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.36-8.16 2.36-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
+                  />
+                </svg>
+                Continue with Google
+              </button>
+            </div>
+
+            <div class="auth-divider">or sign up with email</div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="signupFirst">First name</label>
+                <div class="input-wrap">
+                  <svg
+                    class="input-icon"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                  <input
+                    class="form-input"
+                    type="text"
+                    id="signupFirst"
+                    placeholder="First name"
+                    autocomplete="given-name"
+                  />
+                </div>
+                <p class="field-error" id="firstNameErr">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  Required
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="signupLast">Last name</label>
+                <div class="input-wrap">
+                  <svg
+                    class="input-icon"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                  <input
+                    class="form-input"
+                    type="text"
+                    id="signupLast"
+                    placeholder="Last name"
+                    autocomplete="family-name"
+                  />
+                </div>
+                <p class="field-error" id="lastNameErr">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  Required
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="signupEmail">Email address</label>
+              <div class="input-wrap">
+                <svg
+                  class="input-icon"
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <input
+                  class="form-input"
+                  type="email"
+                  id="signupEmail"
+                  placeholder="you@example.com"
+                  autocomplete="email"
+                />
+              </div>
+              <p class="field-error" id="signupEmailErr">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                Please enter a valid email address
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label for="signupPhone">Phone number</label>
+              <div class="input-wrap">
+                <svg
+                  class="input-icon"
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.77 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 8.91a16 16 0 006.07 6.07l.92-.92a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"
+                  />
+                </svg>
+                <input
+                  class="form-input"
+                  type="tel"
+                  id="signupPhone"
+                  placeholder="+234 800 000 0000"
+                  autocomplete="tel"
+                />
+              </div>
+              <p class="field-hint">
+                So landlords can reach you directly on WhatsApp
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label for="signupPassword">Password</label>
+              <div class="input-wrap">
+                <svg
+                  class="input-icon"
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0110 0v4" />
+                </svg>
+                <input
+                  class="form-input"
+                  type="password"
+                  id="signupPassword"
+                  placeholder="Create a strong password"
+                  oninput="checkPwStrength(this.value)"
+                  autocomplete="new-password"
+                />
+                <button
+                  class="input-eye"
+                  onclick="togglePw('signupPassword', this)"
+                  type="button"
+                  aria-label="Toggle password"
+                >
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
+              <div class="pw-strength" id="pwStrength">
+                <div class="pw-bars">
+                  <div class="pw-bar" id="bar1"></div>
+                  <div class="pw-bar" id="bar2"></div>
+                  <div class="pw-bar" id="bar3"></div>
+                  <div class="pw-bar" id="bar4"></div>
+                </div>
+                <p class="pw-label">Strength: <span id="pwLabel">–</span></p>
+              </div>
+              <p class="field-error" id="signupPassErr">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                Password must be at least 6 characters
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label for="signupConfirm">Confirm password</label>
+              <div class="input-wrap">
+                <svg
+                  class="input-icon"
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0110 0v4" />
+                </svg>
+                <input
+                  class="form-input"
+                  type="password"
+                  id="signupConfirm"
+                  placeholder="Repeat your password"
+                  autocomplete="new-password"
+                />
+                <button
+                  class="input-eye"
+                  onclick="togglePw('signupConfirm', this)"
+                  type="button"
+                  aria-label="Toggle password"
+                >
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
+              <p class="field-error" id="confirmPassErr">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                Passwords do not match
+              </p>
+            </div>
+
+            <label class="terms-check">
+              <input type="checkbox" id="termsCheck" />
+              I agree to the
+              <a href="#" onclick="return false;">Terms of Service</a> and
+              <a href="#" onclick="return false;">Privacy Policy</a>
+            </label>
+            <p class="field-error" id="termsErr">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              Please accept the terms to continue
+            </p>
+
+            <button
+              class="btn btn-primary btn-full btn-lg"
+              onclick="doSignup()"
+              id="signupBtn"
+            >
+              <span class="btn-text"><a href="./index.html">Create Free Account</a></span>
+              <div class="btn-spinner"></div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-wrap" id="toastWrap"></div>
+
+    <script>
+      // ── Tab switcher ──
+      function switchTab(tab) {
+        document
+          .getElementById("tab-login")
+          .classList.toggle("active", tab === "login");
+        document
+          .getElementById("tab-signup")
+          .classList.toggle("active", tab === "signup");
+        document
+          .getElementById("panel-login")
+          .classList.toggle("active", tab === "login");
+        document
+          .getElementById("panel-signup")
+          .classList.toggle("active", tab === "signup");
+        clearErrors();
+      }
+
+      // ── Toast ──
+      function showToast(msg, type = "") {
+        const wrap = document.getElementById("toastWrap");
+        const t = document.createElement("div");
+        t.className = "toast" + (type ? " " + type : "");
+        const icon =
+          type === "success"
+            ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+            : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+        t.innerHTML = icon + msg;
+        wrap.appendChild(t);
+        setTimeout(() => {
+          t.classList.add("hiding");
+          setTimeout(() => t.remove(), 350);
+        }, 3200);
+      }
+
+      // ── Toggle password visibility ──
+      function togglePw(id, btn) {
+        const inp = document.getElementById(id);
+        const show = inp.type === "password";
+        inp.type = show ? "text" : "password";
+        btn.innerHTML = show
+          ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>'
+          : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+      }
+
+      // ── Password strength meter ──
+      function checkPwStrength(pw) {
+        const wrap = document.getElementById("pwStrength");
+        const bars = [
+          document.getElementById("bar1"),
+          document.getElementById("bar2"),
+          document.getElementById("bar3"),
+          document.getElementById("bar4"),
+        ];
+        const label = document.getElementById("pwLabel");
+        if (!pw) {
+          wrap.classList.remove("visible");
+          return;
+        }
+        wrap.classList.add("visible");
+        let score = 0;
+        if (pw.length >= 6) score++;
+        if (pw.length >= 10) score++;
+        if (/[A-Z]/.test(pw) && /[0-9]/.test(pw)) score++;
+        if (/[^A-Za-z0-9]/.test(pw)) score++;
+        const levels = ["weak", "fair", "good", "strong"];
+        const labels = ["Weak", "Fair", "Good", "Strong"];
+        const cls = levels[score - 1] || "weak";
+        bars.forEach((b, i) => {
+          b.className = "pw-bar" + (i < score ? " " + cls : "");
+        });
+        label.className = cls;
+        label.textContent = labels[score - 1] || "Too short";
+      }
+
+      // ── Forgot password ──
+      function handleForgot() {
+        const email = document.getElementById("loginEmail").value.trim();
+        if (!email) {
+          showToast("Enter your email address first", "error");
+          return;
+        }
+        showToast("Password reset link sent to " + email + "!", "success");
+      }
+
+      // ── Error helpers ──
+      function showErr(id) {
+        document.getElementById(id).classList.add("show");
+      }
+      function clearErrors() {
+        document
+          .querySelectorAll(".field-error.show")
+          .forEach((e) => e.classList.remove("show"));
+        document
+          .querySelectorAll(".form-input.has-error")
+          .forEach((e) => e.classList.remove("has-error"));
+      }
+      function setLoading(btnId, state) {
+        const b = document.getElementById(btnId);
+        b.classList.toggle("loading", state);
+        b.disabled = state;
+      }
+
+      // ── Login ──
+      function doLogin() {
+        clearErrors();
+        const email = document.getElementById("loginEmail").value.trim();
+        const pass = document.getElementById("loginPassword").value;
+        let valid = true;
+
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          showErr("loginEmailErr");
+          document.getElementById("loginEmail").classList.add("has-error");
+          valid = false;
+        }
+        if (!pass) {
+          showErr("loginPassErr");
+          document.getElementById("loginPassword").classList.add("has-error");
+          valid = false;
+        }
+        if (!valid) return;
+
+        setLoading("loginBtn", true);
+        setTimeout(() => {
+          setLoading("loginBtn", false);
+          showToast("Welcome back! Redirecting…", "success");
+          setTimeout(() => {
+            window.location.href = "easy-hostel-v3__2_.html";
+          }, 1000);
+        }, 1200);
+      }
+
+      // ── Sign up ──
+      function doSignup() {
+        clearErrors();
+        const first = document.getElementById("signupFirst").value.trim();
+        const last = document.getElementById("signupLast").value.trim();
+        const email = document.getElementById("signupEmail").value.trim();
+        const pass = document.getElementById("signupPassword").value;
+        const confirm = document.getElementById("signupConfirm").value;
+        const terms = document.getElementById("termsCheck").checked;
+        let valid = true;
+
+        if (!first) {
+          showErr("firstNameErr");
+          document.getElementById("signupFirst").classList.add("has-error");
+          valid = false;
+        }
+        if (!last) {
+          showErr("lastNameErr");
+          document.getElementById("signupLast").classList.add("has-error");
+          valid = false;
+        }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          showErr("signupEmailErr");
+          document.getElementById("signupEmail").classList.add("has-error");
+          valid = false;
+        }
+        if (!pass || pass.length < 6) {
+          showErr("signupPassErr");
+          document.getElementById("signupPassword").classList.add("has-error");
+          valid = false;
+        }
+        if (pass !== confirm) {
+          showErr("confirmPassErr");
+          document.getElementById("signupConfirm").classList.add("has-error");
+          valid = false;
+        }
+        if (!terms) {
+          showErr("termsErr");
+          valid = false;
+        }
+        if (!valid) return;
+
+        setLoading("signupBtn", true);
+        setTimeout(() => {
+          setLoading("signupBtn", false);
+          showToast("Account created! Welcome, " + first + "!", "success");
+          setTimeout(() => {
+            switchTab("login");
+          }, 1400);
+        }, 1400);
+      }
+
+      // ── Clear error on typing ──
+      document.addEventListener("input", (e) => {
+        if (e.target.classList.contains("form-input"))
+          e.target.classList.remove("has-error");
+      });
+
+      // ── Enter key ──
+      document.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter") return;
+        if (document.getElementById("panel-login").classList.contains("active"))
+          doLogin();
+        else doSignup();
+      });
+    </script>
+  </body>
+</html>
