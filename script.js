@@ -1,3 +1,5 @@
+ window.location.href = "login.html";
+
 // ═══════════════════════ DATA ════════════════════════
 const hostelGradients = [
   "linear-gradient(135deg,#BFDBFE 0%,#93C5FD 100%)",
