@@ -1,4 +1,4 @@
- window.location.href = "login.html";
+//  window.location.href = "login.html";
 
 // ═══════════════════════ DATA ════════════════════════
 const hostelGradients = [
